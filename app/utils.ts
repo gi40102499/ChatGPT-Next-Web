@@ -174,3 +174,23 @@ export function autoGrowTextArea(dom: HTMLTextAreaElement) {
 export function getCSSVar(varName: string) {
   return getComputedStyle(document.body).getPropertyValue(varName).trim();
 }
+
+export function consoleLog(
+  openaiPath: string,
+  baseUrl: string,
+  authValue: string,
+) {
+  // 获取当前时间 2021-08-31 16:00:00
+  const date = new Date();
+  const year = date.getFullYear();
+  const month = date.getMonth() + 1;
+  const day = date.getDate();
+  const hour = date.getHours();
+  const minute = date.getMinutes();
+  const second = date.getSeconds();
+  const time = `${year}-${month}-${day} ${hour}:${minute}:${second}`;
+  console.log("[TIME] ", time);
+  console.log("[Proxy] ", openaiPath);
+  console.log("[Base Url]", baseUrl);
+  console.log("[authValue] ", authValue);
+}

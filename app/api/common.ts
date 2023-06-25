@@ -1,4 +1,5 @@
 import { NextRequest } from "next/server";
+import { consoleLog } from "../utils";
 
 const OPENAI_URL = "api.openai.com";
 const DEFAULT_PROTOCOL = "https";
@@ -11,15 +12,13 @@ export async function requestOpenai(req: NextRequest) {
     "/api/openai/",
     "",
   );
-
   let baseUrl = BASE_URL;
 
   if (!baseUrl.startsWith("http")) {
     baseUrl = `${PROTOCOL}://${baseUrl}`;
   }
 
-  console.log("[Proxy] ", openaiPath);
-  console.log("[Base Url]", baseUrl);
+  consoleLog(openaiPath || "", baseUrl, authValue || "");
 
   if (process.env.OPENAI_ORG_ID) {
     console.log("[Org ID]", process.env.OPENAI_ORG_ID);

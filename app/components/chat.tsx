@@ -492,6 +492,8 @@ export function Chat() {
 
   // check if should send message
   const onInputKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    // TODO 取消上键
+    return;
     // if ArrowUp and no userInput, fill with last input
     if (
       e.key === "ArrowUp" &&
@@ -515,6 +517,8 @@ export function Chat() {
   };
 
   const findLastUserIndex = (messageId: number) => {
+    // TODO 取消右键
+    return;
     // find last user input message and resend
     let lastUserMessageIndex: number | null = null;
     for (let i = 0; i < session.messages.length; i += 1) {
@@ -538,14 +542,14 @@ export function Chat() {
 
   const onDelete = (botMessageId: number) => {
     const userIndex = findLastUserIndex(botMessageId);
-    if (userIndex === null) return;
+    if (!userIndex) return;
     deleteMessage(userIndex);
   };
 
   const onResend = (botMessageId: number) => {
     // find last user input message and resend
     const userIndex = findLastUserIndex(botMessageId);
-    if (userIndex === null) return;
+    if (!userIndex) return;
 
     setIsLoading(true);
     const content = session.messages[userIndex].content;
